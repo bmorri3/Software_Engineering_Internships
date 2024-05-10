@@ -134,7 +134,7 @@ This project is open source and available under <https://unlicense.org> .
     urls = [
         'https://www.indeed.com/q-software-engineer-internship-jobs.html',
         'https://www.glassdoor.com/Intern_Jobs/SRCH_KO0,13.htm',
-        'https://www.linkedin.com/jobs/search/?keywords=software%20engineer%20internship',
+        'https://www.linkedin.com/jobs/search/?currentJobId=3917554987&keywords=software%20engineer%20internship',
         'https://www.builtin.com/jobs/internships',  # Tech internship listing website
         'https://www.acm.org/careers/students/internships',  # Association for Computing Machinery internship listings
         'https://www.ieee.org/careers/internships',  # Institute of Electrical and Electronics Engineers internship listings        
