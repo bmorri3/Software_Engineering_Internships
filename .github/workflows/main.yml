@@ -3,8 +3,8 @@ name: Daily Run main.py
 on:
   push:
   schedule:
-    - cron: "25 10 *"  # Runs at 10:25 AM Eastern Time daily (14:25 UTC)
-    - cron: "00 04 *"  # Runs at 12:00 AM Eastern Time daily (04:00 UTC)
+    - cron: "25 14 * * *"  # Runs at 10:25 AM Eastern Time daily (14:25 UTC)
+    - cron: "0 4 * * *"    # Runs at 12:00 AM Eastern Time daily (04:00 UTC)
   workflow_dispatch:
 
 jobs:
