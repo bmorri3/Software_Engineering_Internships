@@ -1,25 +1,23 @@
 name: Daily Run main.py
 
 on:
+  push:
   schedule:
-    - cron: "25 10 * * *"  # Runs at 10:25 AM Eastern Time daily (14:25 UTC)
-    - cron: "00 04 * * *"  # Runs at 12:00 AM Eastern Time daily (04:00 UTC)
+    - cron: "25 10 *"  # Runs at 10:25 AM Eastern Time daily (14:25 UTC)
+    - cron: "00 04 *"  # Runs at 12:00 AM Eastern Time daily (04:00 UTC)
+  workflow_dispatch:
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Run script
         run: python main.py
