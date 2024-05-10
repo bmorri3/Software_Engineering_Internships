@@ -48,27 +48,30 @@ def scrape_internships(url):
 
     internships = []
 
-    for row in table.find_all('tr'):
-        row_data = []
-        for cell in row.find_all('td'):
-            a_tag = cell.find('a')
-            if a_tag and a_tag.has_attr('href'):
-                url = a_tag['href']
+    if table is not None:
+        for row in table.find_all('tr'):
+            row_data = []
+            for cell in row.find_all('td'):
+                a_tag = cell.find('a')
+                if a_tag and a_tag.has_attr('href'):
+                    url = a_tag['href']
 
-                if os.getenv('Format') in url:
-                    company_name = url.split('/')[-1]
-                    row_data.append(company_name)
+                    if os.getenv('Format') in url:
+                        company_name = url.split('/')[-1]
+                        row_data.append(company_name)
+                    else:
+                        row_data.append(url)
                 else:
-                    row_data.append(url)
-            else:
-                cell_text = remove_emojis(cell.get_text(strip=True))
-                row_data.append(cell_text)
-        if len(row_data) > 2:
-            row_data[2] = split_location(row_data[2])
+                    cell_text = remove_emojis(cell.get_text(strip=True))
+                    row_data.append(cell_text)
+            if len(row_data) > 2:
+                row_data[2] = split_location(row_data[2])
 
-        link = row_data[3] if len(row_data) > 3 else ""
-        if link and link.startswith("http"):
-            internships.append(row_data)
+            link = row_data[3] if len(row_data) > 3 else ""
+            if link and link.startswith("http"):
+                internships.append(row_data)
+    else:
+        print(f"No table found on the page: {url}")
 
     return internships
 
