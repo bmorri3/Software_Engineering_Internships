@@ -128,8 +128,18 @@ Please note that while we strive to keep the information accurate and up-to-date
 This project is open source and available under <https://unlicense.org> .
     
     """
-    URL = os.getenv('SCRAPER_URL')
-    scraped_data = scrape_internships(URL)
+    urls = [
+        'https://www.indeed.com/q-software-engineer-internship-jobs.html',
+        'https://www.glassdoor.com/Intern_Jobs/SRCH_KO0,13.htm',
+        'https://www.linkedin.com/jobs/search/?keywords=software%20engineer%20internship',
+        'https://www.builtinaly.com/internships',  # Tech internship listing website
+        'https://www.acm.org/careers/students/internships',  # Association for Computing Machinery internship listings
+        'https://www.ieee.org/careers/internships',  # Institute of Electrical and Electronics Engineers internship listings        
+    ]
+        
+    scraped_data = []
+    for url in urls:
+        scraped_data.extend(scrape_internships(url))
 
     markdown_table = create_markdown_table(scraped_data)
     complete_readme = intro_text + "\n " + markdown_table
